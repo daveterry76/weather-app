@@ -33,7 +33,8 @@ const WeatherApp = () => {
     let temp = (data.data?.main.temp - 273.15).toFixed(2);
     let tempMin = (data.data?.main.temp_min - 273.15).toFixed(2);
     let tempMax = (data.data?.main.temp_max - 273.15).toFixed(2);
-    let weatherCondition = data.data?.weather[0].main;
+    let weatherCondition = data.data?.weather[0]?.main;
+    console.log(weatherCondition);
 
     let currentDate = new Date();
     let day = currentDate.toLocaleString('default', { weekday: 'long'})
@@ -63,14 +64,22 @@ const WeatherApp = () => {
                         <p className='text-lg'>{hour} : { minutes } : { seconds }</p>
                     </div>
                     <hr/>
-                    { data && data (
-                        <div className='mt-4'>
+                    <div className='mt-4'>
                         <i class="fa-solid fa-cloud fa-4x"></i>
-                        <h3 className='text-3xl font-bold'>{temp}&deg;C</h3>
+                        <h3 className='text-3xl font-bold'>{search.length > 0 ? temp : 0}&deg;C</h3>
                         <h5 className='text-xl my-3 font-semibold'>{weatherCondition}</h5>
-                        <p className='text-lg font-medium'>{tempMin}&deg;C | {tempMax}&deg;C</p>
+                        <p className='text-lg font-medium'>{search.length > 0 ? tempMin : 0}&deg;C | {search.length > 0 ? tempMax : 0}&deg;C</p> 
+                        {/* {data.length > 0 ? 
+                        <>
+                            <h3 className='text-3xl font-bold'>{temp}&deg;C</h3>
+                            <h5 className='text-xl my-3 font-semibold'>{weatherCondition}</h5>
+                            <p className='text-lg font-medium'>{tempMin}&deg;C | {tempMax}&deg;C</p> 
+                        </>
+                        : 
+                        <>
+                            <div></div>
+                        </>} */}
                     </div>
-                    )}
                     
                 </div>
 
